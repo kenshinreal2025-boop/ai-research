@@ -13,6 +13,14 @@ from typing import Dict, List, Optional, Sequence
 from zipfile import ZIP_DEFLATED, ZipFile
 
 SCENARIOS = [0.5, 1.0, 1.5, 2.0]
+PE_SENSITIVITY_MARGIN = 0.32
+FIXED_MARKET_CAPS = {
+    "AXTI": 1.65e9,
+    "Nittobo": 799.7e9,
+    "Ibiden": 2.5797e12,
+    "Coherent": 13.2e9,
+    "Sumitomo Electric": 3.78e12,
+}
 
 
 @dataclass
@@ -145,6 +153,23 @@ def build_rows(config: CompanyConfig, annual: List[Dict], shares: float, summary
         ni2026_rows.append([config.name, f"+{int(s*100)}%", ni_2026])
         eps_rows.append([config.name, int(s * 100), eps])
 
+    pe_rows = []
+    market_cap = FIXED_MARKET_CAPS.get(config.name)
+    if market_cap is not None:
+        for s in SCENARIOS:
+            delta_ni = ai_revenue * s * PE_SENSITIVITY_MARGIN
+            new_ni = net_income + delta_ni
+            eps = new_ni / shares if shares else 0.0
+            forward_pe = market_cap / new_ni if new_ni else 0.0
+            pe_rows.append([
+                config.name,
+                f"+{int(s * 100)}%",
+                net_income,
+                new_ni,
+                eps,
+                forward_pe,
+            ])
+
     hist_rows = []
     for row in annual:
         rev = float(row["revenue"])
@@ -167,6 +192,7 @@ def build_rows(config: CompanyConfig, annual: List[Dict], shares: float, summary
         "2026E净利润变化_long": ni2026_rows,
         "历史财报": hist_rows,
         "EPS": eps_rows,
+        "PE Sensitivity": pe_rows,
     }
 
 
@@ -285,6 +311,7 @@ def run(output_xlsx: Path, output_svg: Path, fallback_path: Path, offline: bool)
         "利润弹性情景表": [["Company", "Scenario", "PriceIncrease", "AIRevenue", "IncrementalProfit", "NetIncome_Base", "NetIncome_Scenario", "NetIncome_2026E", "EPS_Scenario", "NetMargin_Base", "NetMargin_Scenario"]],
         "2026E净利润变化": [["Company", "+50%", "+100%", "+150%", "+200%"]],
         "历史财报": [["Company", "Ticker", "Year", "Revenue", "GrossProfit", "NetIncome", "GrossMargin", "NetMargin"]],
+        "PE Sensitivity": [["Company", "ASP Increase", "Base NI", "New NI", "EPS", "Forward PE"]],
     }
     eps_points = []
     ni_map: Dict[str, Dict[str, float]] = {}
@@ -313,6 +340,7 @@ def run(output_xlsx: Path, output_svg: Path, fallback_path: Path, offline: bool)
         sheets["AI收入占比"].extend(built["AI收入占比"])
         sheets["利润弹性情景表"].extend(built["利润弹性情景表"])
         sheets["历史财报"].extend(built["历史财报"])
+        sheets["PE Sensitivity"].extend(built["PE Sensitivity"])
         eps_points.extend(built["EPS"])
 
         ni_map[cfg.name] = {r[1]: r[2] for r in built["2026E净利润变化_long"]}
@@ -329,7 +357,7 @@ def run(output_xlsx: Path, output_svg: Path, fallback_path: Path, offline: bool)
 
 def main() -> None:
     p = argparse.ArgumentParser(description="AI产业链投研数据库系统")
-    p.add_argument("--output", default="output/ai_equity_research.xlsx")
+    p.add_argument("--output", default="output.xlsx")
     p.add_argument("--chart", default="output/eps_sensitivity.svg")
     p.add_argument("--fallback", default="data/fallback_financials.json")
     p.add_argument("--offline", action="store_true", help="强制使用离线样本数据")
