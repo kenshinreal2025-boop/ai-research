@@ -1,0 +1,62 @@
+{
+  "AXTI": {
+    "summary": "AXT supplies indium phosphide and compound semiconductor substrates for optical and photonic applications.",
+    "shares_outstanding": 44000000,
+    "annual": [
+      {"year": 2021, "revenue": 141000000, "gross_profit": 44000000, "net_income": 14000000},
+      {"year": 2022, "revenue": 153000000, "gross_profit": 43000000, "net_income": 12000000},
+      {"year": 2023, "revenue": 101000000, "gross_profit": 15000000, "net_income": -9000000},
+      {"year": 2024, "revenue": 92000000, "gross_profit": 13000000, "net_income": -12000000}
+    ]
+  },
+  "Coherent": {
+    "summary": "Coherent provides lasers, optical transceivers and photonics components for datacom and AI infrastructure.",
+    "shares_outstanding": 153000000,
+    "annual": [
+      {"year": 2021, "revenue": 1300000000, "gross_profit": 430000000, "net_income": 120000000},
+      {"year": 2022, "revenue": 5200000000, "gross_profit": 1700000000, "net_income": 280000000},
+      {"year": 2023, "revenue": 4900000000, "gross_profit": 1500000000, "net_income": 190000000},
+      {"year": 2024, "revenue": 4700000000, "gross_profit": 1450000000, "net_income": 110000000}
+    ]
+  },
+  "Sumitomo Electric": {
+    "summary": "Sumitomo Electric manufactures optical fiber, communication modules and high-performance interconnect materials.",
+    "shares_outstanding": 793000000,
+    "annual": [
+      {"year": 2021, "revenue": 3360000000000, "gross_profit": 540000000000, "net_income": 110000000000},
+      {"year": 2022, "revenue": 4000000000000, "gross_profit": 630000000000, "net_income": 120000000000},
+      {"year": 2023, "revenue": 4300000000000, "gross_profit": 700000000000, "net_income": 145000000000},
+      {"year": 2024, "revenue": 4400000000000, "gross_profit": 730000000000, "net_income": 160000000000}
+    ]
+  },
+  "Ibiden": {
+    "summary": "Ibiden develops advanced IC package substrates, PCB solutions and high-layer laminate materials.",
+    "shares_outstanding": 140000000,
+    "annual": [
+      {"year": 2021, "revenue": 332000000000, "gross_profit": 86000000000, "net_income": 38000000000},
+      {"year": 2022, "revenue": 401000000000, "gross_profit": 111000000000, "net_income": 63000000000},
+      {"year": 2023, "revenue": 370000000000, "gross_profit": 92000000000, "net_income": 47000000000},
+      {"year": 2024, "revenue": 360000000000, "gross_profit": 83000000000, "net_income": 36000000000}
+    ]
+  },
+  "Shinko": {
+    "summary": "Shinko Electric produces semiconductor packages, AI server substrates and fine-pitch PCB technologies.",
+    "shares_outstanding": 128000000,
+    "annual": [
+      {"year": 2021, "revenue": 271000000000, "gross_profit": 66000000000, "net_income": 30000000000},
+      {"year": 2022, "revenue": 324000000000, "gross_profit": 87000000000, "net_income": 51000000000},
+      {"year": 2023, "revenue": 300000000000, "gross_profit": 71000000000, "net_income": 39000000000},
+      {"year": 2024, "revenue": 287000000000, "gross_profit": 62000000000, "net_income": 30000000000}
+    ]
+  },
+  "Nittobo": {
+    "summary": "Nittobo offers glass fiber cloth and composite materials used in CCL, T-Glass and electronics modules.",
+    "shares_outstanding": 37000000,
+    "annual": [
+      {"year": 2021, "revenue": 85000000000, "gross_profit": 22000000000, "net_income": 7000000000},
+      {"year": 2022, "revenue": 96000000000, "gross_profit": 27000000000, "net_income": 10500000000},
+      {"year": 2023, "revenue": 100000000000, "gross_profit": 26000000000, "net_income": 9200000000},
+      {"year": 2024, "revenue": 98000000000, "gross_profit": 24000000000, "net_income": 7800000000}
+    ]
+  }
+}
