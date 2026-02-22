@@ -25,7 +25,7 @@ python equity_research_pipeline.py
 ```
 
 ## 输出
-- `output/ai_equity_research.xlsx`
+- `output.xlsx`
 - `output/eps_sensitivity.svg`
 
 ## 关键模型
